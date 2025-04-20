@@ -1,0 +1,31 @@
+{% load static %}
+{% extends "base.html" %}
+{% block page_title %}Post{% endblock  %}
+{% block css_files %}
+    <link rel='stylesheet' href="{% static 'blog/post.css' %}">
+{% endblock css_files %}
+{% block content %}
+<div class="post-header">
+    <nav>
+        <div class="logo">Name's Blog</div>
+        <div class="nav-links">
+            <a href="#">All Posts</a>
+        </div>
+    </nav>
+
+    <div class="post-container">
+        <div class="title-and-image">
+            <h1 class="post-title">Post Title Goes Here</h1>
+            <img src="https://via.placeholder.com/300x300" alt="Post Image" class="post-image">
+        </div>
+    </div>
+</div>
+
+<div class="post-content-card">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit orci quis semper tincidunt. 
+        Fusce ac ex in justo porta luctus. Curabitur imperdiet lectus sed odio cursus, a laoreet metus tincidunt.
+        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+    </p>
+</div>
+{% endblock content %}
