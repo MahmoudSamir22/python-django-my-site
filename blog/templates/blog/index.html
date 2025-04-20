@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}Mahmoud Samir{% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{%static 'blog/index.css'%}">
+{% endblock %}
+{% block content %}
+<div class="top-section">
+    <nav>
+        <div class="logo">Samir's Blog</div>
+        <div class="nav-links">
+            <a href="#">All Posts</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-top">
+            <img src="https://placehold.co/600x400" alt="Blog Owner" class="profile-pic">
+            <div class="hero-title">
+                <h1>Mahmoud Samir's<br><span>Blog</span></h1>
+            </div>
+        </div>
+        <p class="intro">Hi, I am Mahmoud and I love to blog about tech and the world!</p>
+    </div>
+</div>
+
+<div class="card-section">
+    <div class="latest-card">
+        <h2>My Latest Thoughts</h2>
+        <div class="posts">
+            <div class="post">
+                <img src="post1.jpg" alt="Post 1">
+                <h3>Post Title 1</h3>
+                <p>Short description for post 1 goes here.</p>
+            </div>
+            <div class="post">
+                <img src="post2.jpg" alt="Post 2">
+                <h3>Post Title 2</h3>
+                <p>Short description for post 2 goes here.</p>
+            </div>
+            <div class="post">
+                <img src="post3.jpg" alt="Post 3">
+                <h3>Post Title 3</h3>
+                <p>Short description for post 3 goes here.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
