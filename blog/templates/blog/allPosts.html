@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}All Posts{% endblock page_title %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "blog/allposts.css" %}">
+{% endblock css_files %}
+{% block content %}
+<header class="main-header">
+    <nav>
+      <div class="logo">Name's Blog</div>
+      <div class="nav-links">
+        <a href="#">All Posts</a>
+      </div>
+    </nav>
+    <h1 class="page-title">All Posts</h1>
+  </header>
+
+  <main class="posts-container">
+    <div class="posts-grid">
+        {% for post in posts %}
+            <a href="/posts/{{ post.slug }}" class="post-card">
+                <img src="{{post.image}}" alt="Post Image">
+                <h2 class="post-title">{{ post.title|title }}</h2>
+            </a>
+        {% endfor %}
+    </div>
+  </main>
+{% endblock content %}
