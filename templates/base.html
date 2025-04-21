@@ -10,6 +10,16 @@
     {% block css_files %}{% endblock css_files %}
   </head>
   <body>
+    <header class="main-header">
+      <nav>
+        <div class="logo">
+          <a href="/" style="text-decoration: none; color: inherit;">Mahmoud's Blog</a>
+        </div>
+        <div class="nav-links">
+          <a href={% url "allPosts" %}>All Posts</a>
+        </div>
+      </nav>
+    </header>
       {% block content %}{% endblock %}
   </body>
 </html>

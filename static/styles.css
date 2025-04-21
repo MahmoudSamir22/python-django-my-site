@@ -1,6 +1,44 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
-    color: #333;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: #333;
 }
+
+/* Header & Nav */
+.main-header {
+  background-color: #390281;
+  padding: 20px 50px;
+  color: white;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.page-title {
+  font-size: 36px;
+  margin: 0;
+  text-align: center;
+}
+
+.logo a {
+  text-decoration: none;
+  color: inherit;
+}
+
