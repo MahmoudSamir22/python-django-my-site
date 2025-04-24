@@ -1,10 +1,11 @@
 from datetime import date
 
 from django.shortcuts import render
+from .models import Author, Tag, Post
 
 all_posts = [
     {
-        "slug": "hike-in-the-mountains",
+        "slug": "mountain-hiking",
         "image": "mountains.jpg",
         "author": "Maximilian",
         "date": date(2021, 7, 21),
@@ -83,13 +84,15 @@ def starting_page(request):
 
 
 def posts(request):
+    postsData = Post.objects.all()
     return render(request, "blog/all-posts.html", {
-      "all_posts": all_posts
+      "all_posts": postsData
     })
 
 
 def post_detail(request, slug):
-    identified_post = next(post for post in all_posts if post['slug'] == slug)
+    # identified_post = next(post for post in all_posts if post['slug'] == slug)
+    identified_post = Post.objects.get(slug=slug)
     return render(request, "blog/post-detail.html", {
       "post": identified_post
     })
