@@ -1,93 +1,95 @@
+from datetime import date
+
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
-from django.template.loader import render_to_string
 
-# Create your views here.
+all_posts = [
+    {
+        "slug": "hike-in-the-mountains",
+        "image": "mountains.jpg",
+        "author": "Maximilian",
+        "date": date(2021, 7, 21),
+        "title": "Mountain Hiking",
+        "excerpt": "There's nothing like the views you get when hiking in the mountains! And I wasn't even prepared for what happened whilst I was enjoying the view!",
+        "content": """
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
+          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
+          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
 
-image_placeholder = "https://placehold.co/600x400"
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
+          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
+          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
 
-posts = [
-    {
-        "slug": "intro-to-python",
-        "title": "Getting Started with Python",
-        "image": "https://placehold.co/600x400/306998/ffffff",
-        "description": "An introductory guide to Python programming for beginners."
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
+          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
+          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
+        """
     },
     {
-        "slug": "javascript-basics",
-        "title": "JavaScript Basics for Web Development",
-        "image": "https://placehold.co/600x400/f0db4f/323330",
-        "description": "Learn the core concepts of JavaScript and how it's used in web development."
+        "slug": "programming-is-fun",
+        "image": "coding.jpg",
+        "author": "Maximilian",
+        "date": date(2022, 3, 10),
+        "title": "Programming Is Great!",
+        "excerpt": "Did you ever spend hours searching that one error in your code? Yep - that's what happened to me yesterday...",
+        "content": """
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
+          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
+          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
+
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
+          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
+          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
+
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
+          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
+          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
+        """
     },
     {
-        "slug": "data-structures-in-cpp",
-        "title": "Mastering Data Structures in C++",
-        "image": "https://placehold.co/600x400/00427e/ffffff",
-        "description": "A deep dive into data structures using the C++ programming language."
-    },
-    {
-        "slug": "building-apis-with-node",
-        "title": "Building RESTful APIs with Node.js",
-        "image": "https://placehold.co/600x400/3c873a/ffffff",
-        "description": "Learn how to create and manage RESTful APIs using Node.js and Express."
-    },
-    {
-        "slug": "intro-to-react",
-        "title": "Introduction to React.js",
-        "image": "https://placehold.co/600x400/61dafb/20232a",
-        "description": "A beginner's guide to building dynamic user interfaces with React.js."
-    },
-    {
-        "slug": "python-data-analysis",
-        "title": "Data Analysis with Python and Pandas",
-        "image": "https://placehold.co/600x400/4584b6/ffffff",
-        "description": "Explore how to analyze and visualize data using Python libraries like Pandas and Matplotlib."
-    },
-    {
-        "slug": "docker-for-devs",
-        "title": "Docker Essentials for Developers",
-        "image": "https://placehold.co/600x400/0db7ed/ffffff",
-        "description": "Learn the fundamentals of Docker and how to containerize your applications."
-    },
-    {
-        "slug": "debugging-tips",
-        "title": "Top Debugging Tips for Programmers",
-        "image": "https://placehold.co/600x400/e44d26/ffffff",
-        "description": "Improve your debugging skills with these practical tips and techniques."
-    },
-    {
-        "slug": "clean-code-principles",
-        "title": "Writing Clean and Maintainable Code",
-        "image": "https://placehold.co/600x400/222831/f4f4f4",
-        "description": "Discover the principles of clean code and how to apply them in your projects."
-    },
-    {
-        "slug": "intro-to-git",
-        "title": "Version Control with Git",
-        "image": "https://placehold.co/600x400/f1502f/ffffff",
-        "description": "A step-by-step guide to using Git for version control and collaboration."
+        "slug": "into-the-woods",
+        "image": "woods.jpg",
+        "author": "Maximilian",
+        "date": date(2020, 8, 5),
+        "title": "Nature At Its Best",
+        "excerpt": "Nature is amazing! The amount of inspiration I get when walking in nature is incredible!",
+        "content": """
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
+          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
+          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
+
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
+          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
+          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
+
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
+          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
+          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
+        """
     }
 ]
 
+def get_date(post):
+  return post['date']
+
+# Create your views here.
 
 
-def index(request):
-    return render(request,'blog/index.html')
+def starting_page(request):
+    sorted_posts = sorted(all_posts, key=get_date)
+    latest_posts = sorted_posts[-3:]
+    return render(request, "blog/index.html", {
+      "posts": latest_posts
+    })
 
-def postBySlug(request, slug):
-    existedPost = None
-    for post in posts:
-        if post["slug"] == slug:
-            existedPost = post
-            break
-    
-    if existedPost:
-        return render(request, "blog/post.html", existedPost)
-    else:
-        response = render_to_string("404.html")
-        return HttpResponseNotFound(response)
-    
-def getPosts(request):
-    return render(request, "blog/allPosts.html", {
-        "posts": posts,
+
+def posts(request):
+    return render(request, "blog/all-posts.html", {
+      "all_posts": all_posts
+    })
+
+
+def post_detail(request, slug):
+    identified_post = next(post for post in all_posts if post['slug'] == slug)
+    return render(request, "blog/post-detail.html", {
+      "post": identified_post
     })

@@ -1,72 +1,43 @@
-nav {
+.post {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 20px 50px;
-    margin-bottom: 40px;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-}
-
-.nav-links a {
-    color: white;
+    text-align: center;
+  }
+  
+  .post a {
     text-decoration: none;
-    font-size: 16px;
-}
-
-
-.post-header {
+    color: black;
+    transition: all 0.2s ease;
+    padding: 1rem;
+  }
+  
+  .post a:hover,
+  .post a:active {
+    transform: scale(1.1);
     background-color: #390281;
     color: white;
-    padding: 60px 20px 60px;
-}
-
-.post-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.title-and-image {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    flex-wrap: wrap;
-}
-
-.post-title {
-    font-size: 40px;
-    margin: 0;
-    flex: 1;
-    min-width: 250px;
-    text-align: left;
-}
-
-.post-image {
-    width: 300px;
-    height: 300px;
+  }
+  
+  .post img {
+    width: 5rem;
+    height: 5rem;
     object-fit: cover;
-    transform: rotate(8deg);
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    flex-shrink: 0;
-}
-
-.post-content-card {
-    max-width: 800px;
-    margin: 60px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-    font-size: 18px;
-    line-height: 1.6;
-}
+    border-radius: 50%;
+  }
+  
+  .post h3 {
+    margin: 0.25rem 0;
+  }
+  
+  .post time {
+    color: #666666;
+    margin: 0.25rem;
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+  
+  .post:hover time,
+  .post:active time {
+    color: white;
+  }

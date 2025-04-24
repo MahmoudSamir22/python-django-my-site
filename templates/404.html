@@ -1,19 +1,10 @@
 {% extends "base.html" %}
-{% load static %}
-{% block page_title %}
-    Page Not Found
-{% endblock page_title %}
-{% block css_files %}
-    <link rel="stylesheet" href="{% static "404.css" %}">
+
+{% block title %}
+We didn't find that page!
 {% endblock %}
+
 {% block content %}
-<div class="container">
-    <h1 class="error-code">404</h1>
-    <h2 class="error-title">Page Not Found</h2>
-    <p class="error-message">
-      Oops! The page you're looking for doesn't exist or has been moved.<br />
-      Maybe you followed a broken link or typed the URL incorrectly.
-    </p>
-    <a href="/" class="home-button">Go to Homepage</a>
-  </div>
-{% endblock content %}
+  <h2>We're sorry!</h2>
+  <p>But we couldn't find that page!</p>
+{% endblock %}
