@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -15,7 +16,11 @@ class Post(models.Model):
     excerpt = models.CharField(max_length= 500)
     image = models.CharField(max_length= 80)
     date = models.DateField()
-    slug = models.SlugField()
+    slug = models.SlugField(blank=True)
     content = models.CharField(max_length= 500)
     author = models.ForeignKey(Author, on_delete = models.CASCADE)
     tags = models.ManyToManyField(Tag)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
