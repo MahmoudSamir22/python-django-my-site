@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.core.validators import MinLengthValidator
 
 # Create your models here.
 
@@ -21,11 +22,11 @@ class Post(models.Model):
     title = models.CharField(max_length= 80)
     excerpt = models.CharField(max_length= 500)
     image = models.CharField(max_length= 80)
-    date = models.DateField()
-    slug = models.SlugField(blank=True)
-    content = models.CharField(max_length= 500)
-    author = models.ForeignKey(Author, on_delete = models.CASCADE)
-    tags = models.ManyToManyField(Tag)
+    date = models.DateField(auto_now=True)
+    slug = models.SlugField(blank=True, db_index=True, unique= True)
+    content = models.TextField(validators=[MinLengthValidator(10)])
+    author = models.ForeignKey(Author,null=True, on_delete = models.SET_NULL, related_name="posts")
+    tags = models.ManyToManyField(Tag, related_name='posts')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
