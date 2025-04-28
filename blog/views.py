@@ -17,7 +17,7 @@ class StartingPageView(ListView):
         data = queryset[:3]
         return data
 
-class PostsView(ListView):
+class AllPostsView(ListView):
     template_name="blog/all-posts.html"
     model=Post
     context_object_name="all_posts"
