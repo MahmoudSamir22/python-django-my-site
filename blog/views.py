@@ -30,11 +30,15 @@ class AllPostsView(ListView):
 class PostDetailView(View):
     def get(self, request, slug):
         post = Post.objects.get(slug=slug)
+        stored_posts = request.session.get('stored_posts') or []
+        # isReadLater = request.session.get('post_slug') == slug
+        isReadLater = slug in stored_posts
         context = {
             "post": post,
             "tags": post.tags.all(),
             "comments": post.comments.all().order_by('-id'),
-            "comment_form": CommentForm()
+            "comment_form": CommentForm(),
+            "isReadLater": isReadLater
         }
         return render(request, "blog/post-detail.html", context)
     
@@ -56,3 +60,25 @@ class PostDetailView(View):
             "comment_form": comment_form
         }
         return render(request, "blog/post-detail.html", context)
+
+class ReadLaterView(View):
+    def get(self, request):
+        stored_posts = request.session.get('stored_posts')
+        context = {}
+        if stored_posts is None or len(stored_posts) == 0:
+            context["posts"] = []
+            context["has_posts"] = False
+        else:
+            posts = Post.objects.filter(slug__in=stored_posts)
+            context["posts"] = posts
+            context["has_posts"] = True
+        return render(request, "blog/stored-posts.html", context)
+    
+
+    def post(self, request):
+        post_slug = request.POST['slug']
+        stored_posts = request.session.get('stored_posts') or []
+        if post_slug not in stored_posts:
+            stored_posts.append(post_slug)
+        request.session["stored_posts"] = stored_posts
+        return HttpResponseRedirect(reverse("post-detail-page", args=[post_slug]))
