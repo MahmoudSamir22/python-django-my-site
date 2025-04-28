@@ -32,7 +32,7 @@ class Post(models.Model):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
-class Commetn(models.Model):
+class Comment(models.Model):
     user_name = models.CharField(max_length=100)
     user_email = models.EmailField()
     text = models.TextField(max_length=400)
