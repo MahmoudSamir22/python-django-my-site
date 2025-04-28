@@ -80,5 +80,7 @@ class ReadLaterView(View):
         stored_posts = request.session.get('stored_posts') or []
         if post_slug not in stored_posts:
             stored_posts.append(post_slug)
+        else:
+            stored_posts.remove(post_slug)
         request.session["stored_posts"] = stored_posts
         return HttpResponseRedirect(reverse("post-detail-page", args=[post_slug]))

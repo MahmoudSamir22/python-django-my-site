@@ -17,12 +17,17 @@
       <span class="tag"> {{tag.caption}} </span>
     {% endfor %}
   </div>
-  {%if isReadLater %}<h1>True Read Later</h1> {%endif%}
   <div id="read-later"> 
     <form action="{%url 'read-later' %}" method = "POST">
       {% csrf_token %}
       <input type="hidden" name="slug" value="{{post.slug}}">
-      <button>Read Later</button>
+      <button>
+        {%if isReadLater %}
+          Remove From "Read Later" List
+        {%else%}
+          Read Later
+        {%endif%}
+      </button>
     </form>
   </div>
   <article>
